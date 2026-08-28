@@ -1,0 +1,6 @@
+library(readxl)
+banco1 <- read.csv("banco 1 SIM.csv")
+banco2 <- read.csv("banco 2 SINASC.csv")
+banco3 <- read.csv("banco 3 SIDRA.csv")
+banco4 <- read.csv("banco 4 ATLAS.csv")
+banco5 <- read.csv("banco 5 SINISA.csv")
