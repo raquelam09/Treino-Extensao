@@ -191,6 +191,86 @@ table(dados_bd2$PAM, useNA = "ifany")
 # TAIC: total de compradores com perfil AIC
 # TGIC: total de compradores com perfil GIC
 
+# Tarefa 4 - Criar BANCO2_RJ por município
+
+# Função para calcular os indicadores
+calcular_municipio <- function(dados) {
+  
+  data.frame(
+    ANO = 2025,
+    NIVEL = "MUNICIPIO",
+    CODIGO = unique(dados$MUNICIPIO),
+    
+    TVV = sum(!is.na(dados$VALOR_VEICULO)),
+    TCV = sum(dados$TIPO_VEICULO == "Carro", na.rm = TRUE),
+    TMV = sum(dados$TIPO_VEICULO == "Moto", na.rm = TRUE),
+    
+    TVVF = sum(dados$SEXO_PROPRIETARIO == "Feminino", na.rm = TRUE),
+    TVVM = sum(dados$SEXO_PROPRIETARIO == "Masculino", na.rm = TRUE),
+    
+    TVC_22_34 = sum(dados$F_IDADE == "22 a 34", na.rm = TRUE),
+    TVC_35_45 = sum(dados$F_IDADE == "35 a 45", na.rm = TRUE),
+    
+    VMV = mean(dados$VALOR_VEICULO, na.rm = TRUE),
+    DPV = sd(dados$VALOR_VEICULO, na.rm = TRUE),
+    
+    V_P25 = quantile(dados$VALOR_VEICULO, 0.25, na.rm = TRUE),
+    V_P50 = quantile(dados$VALOR_VEICULO, 0.50, na.rm = TRUE),
+    V_P75 = quantile(dados$VALOR_VEICULO, 0.75, na.rm = TRUE),
+    
+    TPIC = sum(dados$PAM == "PIC", na.rm = TRUE),
+    TAIC = sum(dados$PAM == "AIC", na.rm = TRUE),
+    TGIC = sum(dados$PAM == "GIC", na.rm = TRUE)
+  )
+}
+
+# Criar banco por município
+BANCO2_RJ <- do.call(
+  rbind,
+  lapply(
+    split(dados_bd2, dados_bd2$MUNICIPIO),
+    calcular_municipio
+  )
+)
+
+# Criar linha da UF 33
+linha_UF <- data.frame(
+  ANO = 2025,
+  NIVEL = "UF",
+  CODIGO = 33,
+  
+  TVV = sum(!is.na(dados_bd2$VALOR_VEICULO)),
+  TCV = sum(dados_bd2$TIPO_VEICULO == "Carro", na.rm = TRUE),
+  TMV = sum(dados_bd2$TIPO_VEICULO == "Moto", na.rm = TRUE),
+  
+  TVVF = sum(dados_bd2$SEXO_PROPRIETARIO == "Feminino", na.rm = TRUE),
+  TVVM = sum(dados_bd2$SEXO_PROPRIETARIO == "Masculino", na.rm = TRUE),
+  
+  TVC_22_34 = sum(dados_bd2$F_IDADE == "22 a 34", na.rm = TRUE),
+  TVC_35_45 = sum(dados_bd2$F_IDADE == "35 a 45", na.rm = TRUE),
+  
+  VMV = mean(dados_bd2$VALOR_VEICULO, na.rm = TRUE),
+  DPV = sd(dados_bd2$VALOR_VEICULO, na.rm = TRUE),
+  
+  V_P25 = quantile(dados_bd2$VALOR_VEICULO, 0.25, na.rm = TRUE),
+  V_P50 = quantile(dados_bd2$VALOR_VEICULO, 0.50, na.rm = TRUE),
+  V_P75 = quantile(dados_bd2$VALOR_VEICULO, 0.75, na.rm = TRUE),
+  
+  TPIC = sum(dados_bd2$PAM == "PIC", na.rm = TRUE),
+  TAIC = sum(dados_bd2$PAM == "AIC", na.rm = TRUE),
+  TGIC = sum(dados_bd2$PAM == "GIC", na.rm = TRUE)
+)
+
+# Colocar a UF 33 na primeira linha
+BANCO2_RJ <- rbind(linha_UF, BANCO2_RJ)
+
+# Conferir o resultado
+BANCO2_RJ
+
+# Conferir as primeiras linhas
+head(BANCO2_RJ)
+
+View(BANCO2_RJ)
 # Ao terminar a Tarefa 4 commit com a mensagem " script - tarefa 1 a 4" e envie para o repositório Treino_Extensao
 
 
