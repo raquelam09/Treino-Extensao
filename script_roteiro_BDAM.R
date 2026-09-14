@@ -11,10 +11,22 @@
 ##### NÃO altere as linhas de qualquer outra ETAPA do script e nem do cabeçalho ###
 
 # Tarefa 1: Leitura do banco de dados banco 1 = SIM.csv com o nome de dados_bd1
-dados_bd1 <- read.csv("banco 1 SIM.csv", sep=";")
 # Ler o arquivo, verificar estrutura dos dados e dar uma olhada nos dados
+dados_bd1 = read.csv("banco 1 SIM.csv", header = TRUE, sep=";")
+str(dados_bd1)
 summary(dados_bd1)
+View(dados_bd1)
+
 # Ao terminar a Tarefa 1 commit com a mensagem " script - tarefa 1" e envie para o repositório Treino_Extensao
+
+dados_bd1$VEICULO_CAUSADOR[dados_bd1$VEICULO_CAUSADOR == ""] = NA
+
+dados_bd1$VEICULO_CAUSADOR[dados_bd1$VEICULO_CAUSADOR %in% c("carro", "CARRO")] = "Carro"
+dados_bd1$VEICULO_CAUSADOR[dados_bd1$VEICULO_CAUSADOR %in% c("moto", "MOTO")] = "Moto"
+
+dados_bd1$SEXO_CONDUTOR_CAUSADOR = factor(dados_bd1$SEXO_CONDUTOR_CAUSADOR, levels = c(1,2), labels = c("Masculino", "Feminino"))
+
+dados_bd1$F_IDADE = ifelse(dados_bd1$IDADE_CONDUTOR_CAUSADOR < 35, "22 a 34", "35 a 45")
 
 # Tarefa 2: Manipulação dos dados
 # Padronizar as categorias VEICULO_CAUSADOR para Carro e Moto e indicar que branco é NA
@@ -63,6 +75,16 @@ summary(dados_bd1)
 
 # Tarefa 1: Leitura do banco de dados banco 2 = SINASC.csv com o nome de dados_bd2
 # Ler o arquivo, verificar estrutura dos dados e dar uma olhada nos dados
+# Ler o banco de dados
+dados_bd2 <- read.csv("banco 2 SINASC.csv", header = TRUE, sep = ",")
+
+# Verificar a estrutura dos dados
+str(dados_bd2)
+
+# Visualizar o banco
+View(dados_bd2)
+# Resumo das variáveis
+summary(dados_bd2)
 
 # Ao terminar a Tarefa 1 commit com a mensagem " script - tarefa 1" e envie para o repositório Treino_Extensao
 
@@ -75,7 +97,15 @@ summary(dados_bd1)
 # Ao terminar a Tarefa 2 commit com a mensagem " script - tarefa 1 a 2" e envie para o repositório Treino_Extensao
 
 
-# Tarefa 3: Criar o banco de dados BANCO2_RJ, POR MUNICÍPIO, com as seguintes variáveis listadas abaixo. 
+# Tarefa 3: Leitura do banco de dados Tabela_PAM.csv (com o nome tabela_pam) e:
+# agregar ao banco dados_bd2 as informações de VALOR_P10 e VALOR_P90
+# criar a variável PAM (somente quando TIPO_VEICULO = "Carro"), de acordo com IDADE_PROPRIETARIO e SEXO_PROPRIETARIO, com as seguintes categorias:
+# PAM = "PIC", se VALOR_VEICULO < VALOR_P10; "AIC", se VALOR_P10 <= VALOR_VEICULO <= VALOR_P90; "GIC", se VALOR_VEICULO > VALOR_P90
+
+# Ao terminar a Tarefa 3 commit com a mensagem " script - tarefa 1 a 3" e envie para o repositório Treino_Extensao
+
+ 
+# Tarefa 4: Criar o banco de dados BANCO2_RJ, POR MUNICÍPIO, com as seguintes variáveis listadas abaixo. 
 # Variáveis que se referem a medidas de posição e de dispersão devem ser calculadas sem considerar NAs
 
 # Atenção: a 1a linha do banco deve ser da UF 33
@@ -94,14 +124,16 @@ summary(dados_bd1)
 # V_P25: percentil 25 do valor dos veículos vendidos
 # V_P50: percentil 50 do valor dos veículos vendidos
 # V_P75: percentil 75 do valor dos veículos vendidos
+# TPIC: total de compradores com perfil PIC
+# TAIC: total de compradores com perfil AIC
+# TGIC: total de compradores com perfil GIC
 
-# Ao terminar a Tarefa 3 commit com a mensagem " script - tarefa 1 a 3" e envie para o repositório Treino_Extensao
+# Ao terminar a Tarefa 4 commit com a mensagem " script - tarefa 1 a 4" e envie para o repositório Treino_Extensao
 
 
-# Tarefa 4: Exportar o banco de dados BANCO2_RJ com o nome BANCO2_RJ.csv
+# Tarefa 5: Exportar o banco de dados BANCO2_RJ com o nome BANCO2_RJ.csv
 
-# Ao terminar a Tarefa 4 commit com a mensagem "dados e script - Etapa 2" e envie para o repositório Treino_Extensao
-
+# Ao terminar a Tarefa 5 commit com a mensagem "dados e script - Etapa 2" e envie para o repositório Treino_Extensao
 
 
 ##### ETAPA 3 - banco 3 - equivalente ao SIDRA ######

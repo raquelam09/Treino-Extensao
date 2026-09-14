@@ -1,0 +1,31 @@
+MUNICIPIO;VEICULO_CAUSADOR;SEXO_CONDUTOR_CAUSADOR;IDADE_CONDUTOR_CAUSADOR;NUM_FERIDOS_GRAVES;CAUSA_ACIDENTE
+330455;carro;1;27;0;falta de atencao
+330455;moto;1;27;2;alcool ou drogas
+330455;carro;2;45;;desrespeito a sinalizacao
+330330;moto;1;29;3;falta de atencao
+330330;CARRO;2;34;0;outros
+330350;carro;1;26;1;desrespeito a sinalizacao
+330350;moto;2;29;2;falta de atencao
+330350;moto;;40;0;alcool ou drogas
+330390;carro;1;43;1;outros
+330390;moto;2;29;3;falta de atencao
+330610;carro;1;22;0;desrespeito a sinalizacao
+330610;moto;1;36;2;alcool ou drogas
+330100;Carro;2;23;1;falta de atencao
+330100;moto;1;28;0;outros
+330070;carro;2;;2;desrespeito a sinalizacao
+330010;moto;1;43;1;falta de atencao
+330010;carro;2;45;0;alcool ou drogas
+330270;;1;25;3;desrespeito a sinalizacao
+330270;carro;1;40;1;falta de atencao
+330170;carro;2;22;2;outros
+330170;moto;1;38;0;desrespeito a sinalizacao
+330490;carro;1;29;2;alcool ou drogas
+330490;moto;2;42;1;falta de atencao
+330490;carro;1;33;3;outros
+330490;MOTO;1;31;0;desrespeito a sinalizacao
+330490;carro;2;30;2;falta de atencao
+330490;moto;1;29;1;alcool ou drogas
+330490;carro;2;39;0;falta de atencao
+330350;Moto;1;27;2;desrespeito a sinalizacao
+330455;carro;2;23;1;outros
