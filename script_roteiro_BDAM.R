@@ -121,12 +121,50 @@ table(dados_bd2$TIPO_VEICULO)
 table(dados_bd2$F_IDADE)
 # Ao terminar a Tarefa 2 commit com a mensagem " script - tarefa 1 a 2" e envie para o repositório Treino_Extensao
 
-
 # Tarefa 3: Leitura do banco de dados Tabela_PAM.csv (com o nome tabela_pam) e:
 # agregar ao banco dados_bd2 as informações de VALOR_P10 e VALOR_P90
 # criar a variável PAM (somente quando TIPO_VEICULO = "Carro"), de acordo com IDADE_PROPRIETARIO e SEXO_PROPRIETARIO, com as seguintes categorias:
 # PAM = "PIC", se VALOR_VEICULO < VALOR_P10; "AIC", se VALOR_P10 <= VALOR_VEICULO <= VALOR_P90; "GIC", se VALOR_VEICULO > VALOR_P90
 
+# Ler o banco Tabela_PAM.csv
+tabela_pam <- read.csv("Tabela_PAM.csv", header = TRUE, sep =";")
+View(tabela_pam)
+
+# Agregar VALOR_P10 e VALOR_P90 ao banco dados_bd2
+dados_bd2 <- merge(
+  dados_bd2,
+  tabela_pam[, c("IDADE_PROPRIETARIO", "SEXO_PROPRIETARIO",
+                 "VALOR_P10", "VALOR_P90")],
+  by = c("IDADE_PROPRIETARIO", "SEXO_PROPRIETARIO"))
+
+# Criar a variável PAM somente para TIPO_VEICULO = "Carro"
+dados_bd2$PAM <- NA
+
+dados_bd2$PAM[
+  dados_bd2$TIPO_VEICULO == "Carro" &
+    dados_bd2$VALOR_VEICULO < dados_bd2$VALOR_P10
+] <- "PIC"
+
+dados_bd2$PAM[
+  dados_bd2$TIPO_VEICULO == "Carro" &
+    dados_bd2$VALOR_VEICULO >= dados_bd2$VALOR_P10 &
+    dados_bd2$VALOR_VEICULO <= dados_bd2$VALOR_P90
+] <- "AIC"
+
+dados_bd2$PAM[
+  dados_bd2$TIPO_VEICULO == "Carro" &
+    dados_bd2$VALOR_VEICULO > dados_bd2$VALOR_P90
+] <- "GIC"
+
+# Transformar PAM em fator
+dados_bd2$PAM <- factor(
+  dados_bd2$PAM,
+  levels = c("PIC", "AIC", "GIC")
+)
+
+# Conferir o resultado
+head(dados_bd2)
+table(dados_bd2$PAM, useNA = "ifany")
 # Ao terminar a Tarefa 3 commit com a mensagem " script - tarefa 1 a 3" e envie para o repositório Treino_Extensao
 
  
