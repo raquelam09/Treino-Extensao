@@ -132,6 +132,11 @@ summary(dados_bd3)
 # Tarefa 2: Manipulação dos dados
 # Criar a variável MUNICIPIOS = MUNICIPIO em dados_bd3, sendo que agora com 6 dígitos (em vez de 7 dígitos), desprezando o último dígito verificador
 
+dados_bd3$MUNICIPIOS <- substr(as.character(dados_bd3$MUNICIPIO), 1, 6)
+
+# Verificar o resultado
+head(dados_bd3[, c("MUNICIPIO", "MUNICIPIOS")])
+
 # Ao terminar a Tarefa 2 commit com a mensagem " script - tarefa 1 a 2" e envie para o repositório Treino_Extensao
 
 
