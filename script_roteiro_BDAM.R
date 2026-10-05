@@ -145,6 +145,21 @@ summary(dados_bd1)
 # códigos dos municípios - 2010.csv" com os códigos do IBGE para os municípios do Brasil
 # Ler os arquivos, verificar estruturas dos dados e dar uma olhada nos dados
 
+dados_bd4 <- read.csv("banco 4 ATLAS.csv",
+                      header = TRUE,
+                      sep = ";")
+
+codigos_ibge <- read.csv("códigos dos municípios - 2010.csv",
+                         header = TRUE,
+                         sep = ";")
+# 3. Verificar a estrutura dos dados
+str(dados_bd4)
+str(codigos_ibge)
+
+# 8. Resumo estatístico das variáveis
+summary(dados_bd4)
+summary(codigos_ibge)
+
 # Ao terminar a Tarefa 1 commit com a mensagem " script - tarefa 1" e envie para o repositório Treino_Extensao
 
 
