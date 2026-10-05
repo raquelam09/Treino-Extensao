@@ -197,6 +197,30 @@ dados_bd4
 # QRU: qualidade das rodovias urbanas
 # QRR: qualidade das rodovias rurais
 
+BANCO4_RJ <- data.frame(
+  ANO = 2025,
+  NIVEL = "UF",
+  CODIGO = 33,
+  QR_CA = NA,
+  QRU = NA,
+  QRR = NA
+)
+
+# Adicionar os municípios
+municipios <- data.frame(
+  ANO = 2025,
+  NIVEL = "MUNICIPIO",
+  CODIGO = dados_bd4$MUNICIPIOS,
+  QR_CA = dados_bd4$QUALIDADE_RODOVIAS_2020,
+  QRU = dados_bd4$QUALIDADE_URBANA_2025,
+  QRR = dados_bd4$QUALIDADE_RURAL_2025
+)
+
+# Juntar UF e municipios
+BANCO4_RJ <- rbind(BANCO4_RJ, municipios)
+
+# Visualizar
+BANCO4_RJ
 
 # Ao terminar a Tarefa 3 commit com a mensagem " script - tarefa 1 a 3" e envie para o repositório Treino_Extensao
 
