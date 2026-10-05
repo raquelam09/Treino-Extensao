@@ -167,6 +167,24 @@ summary(codigos_ibge)
 # Criar uma nova variável em dados_bd4 MUNICIPIOS atribuindo os códigos dos municípios, de forma a ficar
 # coerente com os nomes dos municipios e códigos IBGE
 
+# Corrigir a codificação dos nomes
+dados_bd4$MUNICIPIO <- iconv(dados_bd4$MUNICIPIO, from = "latin1", to = "UTF-8")
+
+# Retirar (RJ)
+dados_bd4$MUNICIPIO <- gsub(" \\(RJ\\)", "", dados_bd4$MUNICIPIO)
+
+# Juntar os códigos do IBGE
+dados_bd4 <- merge(dados_bd4, codigos_ibge,
+                   by.x = "MUNICIPIO",
+                   by.y = "município",
+                   all.x = TRUE)
+
+# Criar a variável solicitada
+dados_bd4$MUNICIPIOS <- dados_bd4$CODMUNRES
+
+# Verificar
+dados_bd4
+
 # Ao terminar a Tarefa 2 commit com a mensagem " script - tarefa 1 a 2" e envie para o repositório Treino_Extensao
 
 
