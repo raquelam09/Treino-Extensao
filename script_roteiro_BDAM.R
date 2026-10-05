@@ -226,6 +226,7 @@ BANCO4_RJ
 
 
 # Tarefa 4: Exportar o banco de dados BANCO4_RJ com o nome BANCO4_RJ.csv
+write.csv(BANCO4_RJ, "BANCO4_RJ.csv", row.names = FALSE)
 
 # Ao terminar a Tarefa 4 commit com a mensagem "dados e script - Etapa 4" e envie para o repositório Treino_Extensao
 
