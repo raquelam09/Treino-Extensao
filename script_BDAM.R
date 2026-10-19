@@ -671,12 +671,12 @@ BDAM_RJ <- BDAM_RJ[, c(
 
 # Conferir o resultado
 head(BDAM_RJ)
-View(BDAM_RJ)
 
 # Ao terminar a Tarefa 1 commit com a mensagem " script - tarefa 1" e envie para o repositório Treino_Extensao
 
 
 # Tarefa 2: Exportar o banco de dados BDAM_RJ com o nome BDAM_RJ.csv
+write.csv(BDAM_RJ, "BDAM_RJ.csv", row.names = FALSE)
 
 # Ao terminar a Tarefa 2 commit com a mensagem "dados e script - Etapa 6" e envie para o repositório Treino_Extensao
 
