@@ -245,9 +245,17 @@ dim(dados_bd5)
 
 # Ao terminar a Tarefa 1 commit com a mensagem " script - tarefa 1" e envie para o repositório Treino_Extensao
 
-
 # Tarefa 2: Manipulação dos dados
 # Observe que os números estão com ponto indicando milhar. Estes pontos devem ser extraídos para não confundir com decimal
+
+# Remover os pontos que indicam separadores de milhar
+dados_bd5$NUM_CARROS_REGISTRADOS <- as.numeric(
+  gsub("\\.", "", dados_bd5$NUM_CARROS_REGISTRADOS)
+)
+
+dados_bd5$NUM_MOTOS_REGISTRADAS <- as.numeric(
+  gsub("\\.", "", dados_bd5$NUM_MOTOS_REGISTRADAS)
+)
 
 # Ao terminar a Tarefa 2 commit com a mensagem " script - tarefa 1 a 2" e envie para o repositório Treino_Extensao
 
